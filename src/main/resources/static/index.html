@@ -1,0 +1,98 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Lattice — Study Time Tracker</title>
+
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=DM+Sans:wght@300;400;500&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet" />
+
+<script src="https://cdn.tailwindcss.com"></script>
+<script>
+  tailwind.config = {
+    theme: {
+      extend: {
+        fontFamily: {
+          display: ['"DM Serif Display"', 'serif'],
+          sans: ['"DM Sans"', 'ui-sans-serif', 'system-ui', 'sans-serif'],
+          mono: ['"JetBrains Mono"', 'ui-monospace', 'SFMono-Regular', 'monospace'],
+        },
+      },
+    },
+  };
+</script>
+<style>
+  html, body, #root { height: 100%; }
+  body {
+    font-family: 'DM Sans', ui-sans-serif, system-ui, sans-serif;
+    background: oklch(0.16 0.012 250);
+    color: #e2e8f0;
+    -webkit-font-smoothing: antialiased;
+    text-rendering: optimizeLegibility;
+  }
+  .font-mono    { font-family: 'JetBrains Mono', ui-monospace, monospace; font-feature-settings: 'tnum' 1; }
+  .font-display { font-family: 'DM Serif Display', serif; }
+
+  /* Global scrollbar */
+  ::-webkit-scrollbar { width: 5px; height: 5px; }
+  ::-webkit-scrollbar-track { background: transparent; }
+  ::-webkit-scrollbar-thumb { background: rgba(148,163,184,0.10); border-radius: 6px; }
+  ::-webkit-scrollbar-thumb:hover { background: rgba(148,163,184,0.22); }
+
+  /* Thin scrollbar — sidebar nav & stats */
+  .thin-scroll { scrollbar-width: thin; scrollbar-color: rgba(148,163,184,0.12) transparent; }
+  .thin-scroll::-webkit-scrollbar { width: 3px; height: 3px; }
+  .thin-scroll::-webkit-scrollbar-track { background: transparent; }
+  .thin-scroll::-webkit-scrollbar-thumb { background: rgba(52,211,153,0.15); border-radius: 4px; }
+  .thin-scroll::-webkit-scrollbar-thumb:hover { background: rgba(52,211,153,0.30); }
+
+  /* Horizontal chips scroll */
+  .chips-scroll { scrollbar-width: thin; scrollbar-color: rgba(52,211,153,0.15) transparent; }
+  .chips-scroll::-webkit-scrollbar { height: 3px; }
+  .chips-scroll::-webkit-scrollbar-track { background: transparent; margin: 0 8px; }
+  .chips-scroll::-webkit-scrollbar-thumb { background: rgba(52,211,153,0.18); border-radius: 3px; }
+  .chips-scroll::-webkit-scrollbar-thumb:hover { background: rgba(52,211,153,0.35); }
+
+  /* Ambient background gradient */
+  body::before {
+    content: "";
+    position: fixed; inset: 0;
+    background:
+      radial-gradient(900px 500px at 78% -10%, oklch(0.42 0.10 155 / 0.10), transparent 60%),
+      radial-gradient(700px 600px at -10% 110%, oklch(0.40 0.06 250 / 0.18), transparent 60%);
+    pointer-events: none;
+    z-index: 0;
+  }
+  #root { position: relative; z-index: 1; }
+
+  @keyframes spin { to { transform: rotate(360deg); } }
+  .animate-spin { animation: spin 1s linear infinite; }
+
+  @keyframes pulse-dot {
+    0%, 100% { opacity: 1; transform: scale(1); }
+    50%       { opacity: 0.5; transform: scale(0.75); }
+  }
+  .animate-pulse-dot { animation: pulse-dot 2s ease infinite; }
+</style>
+
+<!-- React 18 -->
+<script src="https://unpkg.com/react@18.3.1/umd/react.development.js" integrity="sha384-hD6/rw4ppMLGNu3tX5cjIb+uRZ7UkRJ6BPkLpg4hAu/6onKUg4lLsHAs9EBPT82L" crossorigin="anonymous"></script>
+<script src="https://unpkg.com/react-dom@18.3.1/umd/react-dom.development.js" integrity="sha384-u6aeetuaXnQ38mYT8rp6sbXaQe3NL9t+IBXmnYxwkUI2Hw4bsp2Wvmx4yRQF1uAm" crossorigin="anonymous"></script>
+<script src="https://unpkg.com/@babel/standalone@7.29.0/babel.min.js" integrity="sha384-m08KidiNqLdpJqLq95G/LEi8Qvjl/xUYll3QILypMoQ65QorJ9Lvtp2RXYGBFj1y" crossorigin="anonymous"></script>
+
+<!-- Framer Motion -->
+<script src="https://unpkg.com/framer-motion@11.18.2/dist/framer-motion.js" crossorigin="anonymous"></script>
+<!-- Recharts -->
+<script src="https://unpkg.com/prop-types@15.8.1/prop-types.min.js"></script>
+<script src="https://unpkg.com/recharts@2.13.3/umd/Recharts.js"></script>
+<!-- Lucide -->
+<script src="https://unpkg.com/lucide-react@0.460.0/dist/umd/lucide-react.js"></script>
+
+</head>
+<body>
+  <div id="root"></div>
+  <script type="text/babel" data-presets="react" src="app.jsx"></script>
+</body>
+</html>

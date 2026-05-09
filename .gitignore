@@ -1,0 +1,9 @@
+.env
+
+/.claude
+
+/.idea
+
+/target
+
+study-time-tracker.iml
